@@ -1,1140 +1,517 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hugo Rosa | Full Stack Developer & DevOps</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #080c14;
-            --surface: #0d1420;
-            --surface2: #111a2c;
-            --border: rgba(255,255,255,0.07);
-            --border-hover: rgba(99,210,255,0.35);
-            --text: #e8edf5;
-            --text-muted: #5a6a82;
-            --text-dim: #8899b2;
-            --cyan: #63d2ff;
-            --cyan-dark: #1a8ab5;
-            --pink: #ff6bac;
-            --violet: #a78bfa;
-            --green: #34d399;
-            --orange: #fb923c;
-            --glow-cyan: rgba(99,210,255,0.15);
-            --glow-pink: rgba(255,107,172,0.12);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo Rosa | Especialista em Sistemas & DevOps</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080c14;--s1:#0d1420;--s2:#111a2c;--bd:rgba(255,255,255,0.07);--bdh:rgba(99,210,255,0.35);--t:#e8edf5;--tm:#5a6a82;--td:#8899b2;--c:#63d2ff;--p:#ff6bac;--v:#a78bfa;--g:#34d399;--o:#fb923c}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden;line-height:1.65}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.15}
+body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(99,210,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,210,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.blobs{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.12;animation:bd 18s ease-in-out infinite alternate}
+.b1{width:600px;height:600px;background:var(--c);top:-200px;left:-150px;animation-duration:20s}
+.b2{width:500px;height:500px;background:var(--p);bottom:-150px;right:-100px;animation-duration:25s;animation-delay:-8s}
+.b3{width:400px;height:400px;background:var(--v);top:40%;left:50%;animation-duration:22s;animation-delay:-4s}
+@keyframes bd{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.1)}}
 
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 5%;height:70px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(180%);background:rgba(8,12,20,.82);border-bottom:1px solid var(--bd);transition:box-shadow .3s}
+nav.sc{box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--c);letter-spacing:-.5px;text-decoration:none}
+.logo span{color:var(--tm)}
+.nr{display:flex;align-items:center;gap:.5rem}
+.nl{display:flex;list-style:none;margin-right:.5rem}
+.nl a{color:var(--td);text-decoration:none;font-size:.85rem;font-weight:500;padding:.4rem .8rem;border-radius:8px;transition:color .2s,background .2s}
+.nl a:hover{color:var(--c);background:rgba(99,210,255,.07)}
+.lb{display:flex;align-items:center;gap:.45rem;padding:.42rem .9rem;border-radius:50px;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--t);font-family:'Syne',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;white-space:nowrap}
+.lb:hover{border-color:var(--c);color:var(--c);background:rgba(99,210,255,.07);transform:translateY(-1px)}
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.65;
-        }
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 5% 60px;position:relative;z-index:1}
+.hi{max-width:860px;text-align:center}
+.hb{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1.2rem;background:rgba(99,210,255,.08);border:1px solid rgba(99,210,255,.25);border-radius:50px;font-size:.82rem;font-weight:500;color:var(--c);margin-bottom:2rem;animation:fu .7s ease both}
+.dot{width:7px;height:7px;background:var(--c);border-radius:50%;flex-shrink:0;animation:pl 2s ease-in-out infinite}
+@keyframes pl{0%,100%{box-shadow:0 0 0 0 rgba(99,210,255,.5)}50%{box-shadow:0 0 0 6px rgba(99,210,255,0)}}
+.hero h1{margin-bottom:1.25rem;animation:fu .7s ease .12s both}
+.l1{display:block;font-size:clamp(2.8rem,7vw,5rem);color:var(--t);letter-spacing:-2px}
+.l2{display:block;font-size:clamp(1.2rem,2.5vw,2rem);letter-spacing:-.3px;margin-top:.4rem;background:linear-gradient(135deg,var(--c) 0%,var(--v) 55%,var(--p) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hd{font-size:1.05rem;color:var(--td);max-width:580px;margin:0 auto 2.5rem;line-height:1.8;animation:fu .7s ease .24s both}
+.hc{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fu .7s ease .36s both}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-        h1,h2,h3,h4 { font-family: 'Syne', sans-serif; font-weight: 700; line-height: 1.15; }
+/* HERO QUICK STATS */
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;animation:fu .7s ease .5s both}
+.hs{text-align:center}
+.hs-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs-lbl{font-size:.75rem;color:var(--tm);letter-spacing:1px;text-transform:uppercase;margin-top:.2rem}
+.hs-div{width:1px;height:40px;background:var(--bd);align-self:center}
 
-        /* GRID BACKGROUND */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background-image:
-                linear-gradient(rgba(99,210,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99,210,255,0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-        }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.82rem 1.7rem;border-radius:12px;font-family:'Syne',sans-serif;font-weight:600;font-size:.93rem;text-decoration:none;cursor:pointer;border:none;transition:all .3s ease}
+.bp{background:linear-gradient(135deg,var(--c),var(--v));color:#000;box-shadow:0 8px 28px rgba(99,210,255,.22)}
+.bp:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(99,210,255,.32)}
+.bo{background:transparent;color:var(--t);border:1px solid var(--bd)}
+.bo:hover{border-color:var(--c);color:var(--c);background:rgba(99,210,255,.05);transform:translateY(-3px)}
 
-        /* NOISE OVERLAY */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            opacity: 0.025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 200px 200px;
-            pointer-events: none;
-        }
+/* SECTIONS */
+section{position:relative;z-index:1;padding:6rem 5%}
+.sl{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--c);margin-bottom:.75rem}
+.sl::before{content:'';width:22px;height:1px;background:var(--c)}
+.stitle{font-size:clamp(1.9rem,4vw,2.6rem);letter-spacing:-1px;margin-bottom:.75rem}
+.ssub{color:var(--td);font-size:1rem;max-width:480px}
+.sh{margin-bottom:3.5rem}
+.dv{max-width:1050px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
+.mw{max-width:1100px;margin-left:auto;margin-right:auto}
 
-        /* ── BLOBS ── */
-        .blobs {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.18;
-            animation: blobDrift 18s ease-in-out infinite alternate;
-        }
-        .blob-1 { width: 600px; height: 600px; background: var(--cyan); top: -200px; left: -150px; animation-duration: 20s; }
-        .blob-2 { width: 500px; height: 500px; background: var(--pink); bottom: -150px; right: -100px; animation-duration: 25s; animation-delay: -8s; }
-        .blob-3 { width: 400px; height: 400px; background: var(--violet); top: 40%; left: 50%; animation-duration: 22s; animation-delay: -4s; }
+/* ABOUT */
+.ag{display:grid;grid-template-columns:300px 1fr;gap:5rem;max-width:1050px;margin:0 auto;align-items:center}
+.ap{position:relative}
+.ap::after{content:'';position:absolute;inset:-2px;border-radius:24px;background:linear-gradient(135deg,var(--c),var(--v),var(--p));z-index:-1;opacity:.6}
+.ap img{width:100%;border-radius:22px;display:block;filter:grayscale(15%);transition:filter .4s}
+.ap:hover img{filter:grayscale(0%)}
+.io{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);background:rgba(8,12,20,.9);border:1px solid var(--bd);border-radius:50px;padding:.45rem 1.1rem;font-size:.75rem;font-weight:600;color:var(--g);white-space:nowrap;backdrop-filter:blur(12px)}
+.at h3{font-size:1.75rem;letter-spacing:-.5px;margin-bottom:1.25rem}
+.at h3 em{color:var(--c);font-style:normal}
+.at p{color:var(--td);font-size:1rem;margin-bottom:1.1rem}
+.at-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.badge{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border-radius:50px;font-size:.78rem;font-weight:600;border:1px solid}
+.badge-c{color:var(--c);border-color:rgba(99,210,255,.25);background:rgba(99,210,255,.07)}
+.badge-v{color:var(--v);border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.07)}
+.badge-g{color:var(--g);border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.07)}
+.badge-o{color:var(--o);border-color:rgba(251,146,60,.25);background:rgba(251,146,60,.07)}
 
-        @keyframes blobDrift {
-            from { transform: translate(0,0) scale(1); }
-            to   { transform: translate(60px, 40px) scale(1.1); }
-        }
+/* EXPERIENCE */
+#exp{background:linear-gradient(180deg,transparent,rgba(13,20,32,.6),transparent)}
+.timeline{max-width:900px;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--c),var(--v),var(--p),transparent)}
+.titem{padding-left:3rem;padding-bottom:3rem;position:relative}
+.titem:last-child{padding-bottom:0}
+.titem::before{content:'';position:absolute;left:-5px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--c);transition:all .3s}
+.titem:hover::before{background:var(--c);box-shadow:0 0 12px var(--c)}
+.titem:nth-child(2)::before{border-color:var(--v)}
+.titem:nth-child(2):hover::before{background:var(--v);box-shadow:0 0 12px var(--v)}
+.titem:nth-child(3)::before{border-color:var(--p)}
+.titem:nth-child(3):hover::before{background:var(--p);box-shadow:0 0 12px var(--p)}
+.titem:nth-child(4)::before{border-color:var(--g)}
+.titem:nth-child(4):hover::before{background:var(--g);box-shadow:0 0 12px var(--g)}
+.titem:nth-child(5)::before{border-color:var(--o)}
+.titem:nth-child(5):hover::before{background:var(--o);box-shadow:0 0 12px var(--o)}
+.t-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}
+.t-role{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+.t-period{font-size:.78rem;font-weight:600;padding:.25rem .75rem;border-radius:50px;background:rgba(99,210,255,.08);color:var(--c);border:1px solid rgba(99,210,255,.15);white-space:nowrap}
+.t-company{font-size:.92rem;font-weight:600;color:var(--td);margin-bottom:.75rem}
+.t-company span{color:var(--c)}
+.t-desc{color:var(--tm);font-size:.9rem;line-height:1.7}
+.t-desc li{margin-left:1.2rem;margin-bottom:.3rem}
 
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 0 5%;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            backdrop-filter: blur(24px) saturate(180%);
-            background: rgba(8,12,20,0.75);
-            border-bottom: 1px solid var(--border);
-            transition: box-shadow 0.3s;
-        }
-        nav.scrolled { box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+/* SKILLS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;max-width:1050px;margin:0 auto}
+.sc2{padding:1.75rem;background:var(--s1);border:1px solid var(--bd);border-radius:18px;transition:all .3s;position:relative;overflow:hidden}
+.sc2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ca,var(--c)),transparent);opacity:0;transition:opacity .3s}
+.sc2:hover::before{opacity:1}
+.sc2:hover{border-color:rgba(99,210,255,.2);transform:translateY(-7px);background:var(--s2);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.sc2:nth-child(1){--ca:var(--c)}.sc2:nth-child(2){--ca:var(--v)}.sc2:nth-child(3){--ca:var(--p)}.sc2:nth-child(4){--ca:var(--g)}.sc2:nth-child(5){--ca:var(--o)}.sc2:nth-child(6){--ca:var(--c)}
+.si{font-size:1.75rem;margin-bottom:1rem}
+.sc2 h3{font-size:1.05rem;margin-bottom:1rem}
+.tgs{display:flex;flex-wrap:wrap;gap:.35rem}
+.tg{font-size:.75rem;font-weight:500;padding:.28rem .75rem;border-radius:50px;background:rgba(255,255,255,.05);color:var(--td);border:1px solid var(--bd);transition:all .2s}
+.sc2:hover .tg{background:rgba(99,210,255,.07);color:var(--c);border-color:rgba(99,210,255,.2)}
 
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 1.35rem;
-            color: var(--cyan);
-            letter-spacing: -0.5px;
-            text-decoration: none;
-        }
-        .logo span { color: var(--text-muted); }
+/* EDUCATION */
+#edu{background:linear-gradient(180deg,transparent,rgba(13,20,32,.4),transparent)}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
+.edu-card{padding:1.75rem;background:var(--s1);border:1px solid var(--bd);border-radius:18px;transition:all .3s;position:relative;overflow:hidden}
+.edu-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ec,var(--c)),transparent);opacity:0;transition:opacity .3s}
+.edu-card:hover::after{opacity:1}
+.edu-card:hover{border-color:rgba(99,210,255,.2);transform:translateY(-5px);background:var(--s2)}
+.edu-card:nth-child(1){--ec:var(--c)}.edu-card:nth-child(2){--ec:var(--v)}.edu-card:nth-child(3){--ec:var(--p)}.edu-card:nth-child(4){--ec:var(--g)}.edu-card:nth-child(5){--ec:var(--o)}
+.edu-icon{font-size:1.75rem;margin-bottom:1rem}
+.edu-degree{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.edu-field{font-size:.85rem;color:var(--c);font-weight:500;margin-bottom:.5rem}
+.edu-school{font-size:.85rem;color:var(--td);margin-bottom:.5rem}
+.edu-period{font-size:.75rem;color:var(--tm);font-weight:600}
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+/* CERTS */
+.cert-grid{display:flex;flex-wrap:wrap;gap:.75rem;max-width:1100px;margin:0 auto}
+.cert{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;border-radius:50px;background:rgba(255,255,255,.04);border:1px solid var(--bd);font-size:.8rem;font-weight:500;color:var(--td);transition:all .3s}
+.cert:hover{border-color:var(--bdh);color:var(--c);background:rgba(99,210,255,.06);transform:translateY(-2px)}
+.cert span{font-size:.9rem}
 
-        .nav-links {
-            display: flex;
-            gap: 0;
-            list-style: none;
-            margin-right: 1rem;
-        }
-        .nav-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            transition: color 0.2s, background 0.2s;
-        }
-        .nav-links a:hover {
-            color: var(--cyan);
-            background: rgba(99,210,255,0.07);
-        }
+/* GITHUB STATS */
+#ghstats{background:linear-gradient(180deg,transparent,rgba(13,20,32,.5),transparent)}
+.stats-wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.stat-img{background:var(--s1);border:1px solid var(--bd);border-radius:18px;overflow:hidden;transition:all .3s;padding:1.5rem;display:flex;align-items:center;justify-content:center}
+.stat-img:hover{border-color:var(--bdh);transform:translateY(-4px)}
+.stat-img img{width:100%;max-width:400px;border-radius:8px}
+.streak-wrap{grid-column:1/-1}
 
-        /* ── LANG TOGGLE ── */
-        .lang-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,0.04);
-            color: var(--text);
-            font-family: 'Syne', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-        .lang-btn:hover {
-            border-color: var(--cyan);
-            color: var(--cyan);
-            background: rgba(99,210,255,0.07);
-            transform: translateY(-1px);
-        }
-        .lang-btn .flag { font-size: 1rem; }
-        .lang-btn .lang-label { }
+/* PROJECTS */
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
+.pc{background:var(--s1);border:1px solid var(--bd);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s}
+.pc:hover{border-color:rgba(167,139,250,.3);transform:translateY(-7px);box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.pt{padding:1.75rem 1.75rem 1rem;flex:1}
+.pn{font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:3px;color:var(--tm);text-transform:uppercase;margin-bottom:.65rem}
+.pe{font-size:2rem;margin-bottom:.85rem;display:block}
+.pc h3{font-size:1.15rem;margin-bottom:.55rem}
+.pc p{color:var(--td);font-size:.9rem;line-height:1.65}
+.pb{padding:0 1.75rem 1.5rem}
+.ptgs{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1rem}
+.ptg{font-size:.7rem;font-weight:600;padding:.22rem .6rem;border-radius:50px;background:rgba(99,210,255,.08);color:var(--c);border:1px solid rgba(99,210,255,.15)}
+.pl2{display:inline-flex;align-items:center;gap:.35rem;font-size:.85rem;font-weight:600;color:var(--td);text-decoration:none;transition:color .2s}
+.pl2:hover{color:var(--v)}
+.pl2 svg{transition:transform .2s}
+.pl2:hover svg{transform:translate(2px,-2px)}
 
-        /* ── HERO ── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 90px 5% 0;
-            position: relative;
-            z-index: 1;
-        }
+/* CONTACT */
+#contato{text-align:center}
+.ci{max-width:560px;margin:0 auto}
+.ci h2{font-size:clamp(1.9rem,4.5vw,2.8rem);letter-spacing:-1.5px;margin-bottom:1.1rem}
+.ci p{color:var(--td);font-size:1.05rem;margin-bottom:2.25rem}
+.contact-info{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:2.5rem}
+.cinfo{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:var(--s1);border:1px solid var(--bd);border-radius:12px;font-size:.85rem;color:var(--td);text-decoration:none;transition:all .3s}
+.cinfo:hover{border-color:var(--bdh);color:var(--c);background:var(--s2);transform:translateY(-2px)}
+.soc{display:flex;justify-content:center;gap:.85rem;margin-top:2rem}
+.sb{width:50px;height:50px;border-radius:13px;background:var(--s1);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;color:var(--td);text-decoration:none;transition:all .3s}
+.sb:hover{background:var(--s2);border-color:var(--bdh);color:var(--c);transform:translateY(-4px) rotate(-5deg)}
+footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:1.75rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--tm)}
 
-        .hero-inner {
-            max-width: 900px;
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.5rem 1.25rem;
-            background: rgba(99,210,255,0.08);
-            border: 1px solid rgba(99,210,255,0.25);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--cyan);
-            margin-bottom: 2.5rem;
-            animation: fadeUp 0.8s ease both;
-        }
-        .hero-badge .dot {
-            width: 7px; height: 7px;
-            background: var(--cyan);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(99,210,255,0.5); }
-            50% { box-shadow: 0 0 0 6px rgba(99,210,255,0); }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 7vw, 5.5rem);
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-            animation: fadeUp 0.8s ease 0.15s both;
-        }
-        .hero h1 .line1 { display: block; color: var(--text); }
-        .hero h1 .line2 {
-            display: block;
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 60%, var(--pink) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-desc {
-            font-size: 1.15rem;
-            color: var(--text-dim);
-            max-width: 560px;
-            margin: 0 auto 3rem;
-            line-height: 1.8;
-            animation: fadeUp 0.8s ease 0.3s both;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeUp 0.8s ease 0.45s both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.85rem 1.8rem;
-            border-radius: 12px;
-            font-family: 'Syne', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--cyan), var(--violet));
-            color: #000;
-            box-shadow: 0 8px 32px rgba(99,210,255,0.25);
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(99,210,255,0.35);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        .btn-outline:hover {
-            border-color: var(--cyan);
-            color: var(--cyan);
-            background: rgba(99,210,255,0.05);
-            transform: translateY(-3px);
-        }
-
-        /* scroll indicator */
-        .scroll-hint {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: fadeUp 1s ease 1s both;
-            pointer-events: none;
-        }
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--text-muted), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-        @keyframes scrollPulse { 0%,100% { opacity:0.3 } 50% { opacity:1 } }
-
-        @keyframes fadeUp {
-            from { opacity:0; transform:translateY(25px); }
-            to   { opacity:1; transform:translateY(0); }
-        }
-
-        /* ── SECTION COMMONS ── */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 7rem 5%;
-        }
-
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 1rem;
-        }
-        .section-label::before {
-            content: '';
-            width: 24px; height: 1px;
-            background: var(--cyan);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            letter-spacing: -1px;
-            margin-bottom: 1rem;
-        }
-        .section-subtitle {
-            color: var(--text-dim);
-            font-size: 1.05rem;
-            max-width: 500px;
-        }
-
-        .section-head { margin-bottom: 4rem; }
-
-        /* ── ABOUT ── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 340px 1fr;
-            gap: 5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .about-portrait {
-            position: relative;
-        }
-        .about-portrait::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, var(--cyan), var(--violet), var(--pink));
-            z-index: -1;
-            opacity: 0.7;
-        }
-        .about-portrait img {
-            width: 100%;
-            border-radius: 22px;
-            display: block;
-            filter: grayscale(20%);
-            transition: filter 0.4s;
-        }
-        .about-portrait:hover img { filter: grayscale(0%); }
-
-        .about-portrait .img-overlay {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(8,12,20,0.9);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 0.5rem 1.25rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--cyan);
-            white-space: nowrap;
-            backdrop-filter: blur(12px);
-        }
-
-        .about-text h3 {
-            font-size: 1.9rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 1.5rem;
-        }
-        .about-text h3 em { color: var(--cyan); font-style: normal; }
-        .about-text p {
-            color: var(--text-dim);
-            font-size: 1.05rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2.5rem;
-        }
-        .stat {
-            padding: 1.5rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .stat:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            background: var(--surface2);
-        }
-        .stat-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--cyan), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .stat-lbl {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            margin-top: 0.3rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* ── SKILLS ── */
-        #skills { background: linear-gradient(180deg, transparent, rgba(13,20,32,0.6), transparent); }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            padding: 2rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: all 0.35s cubic-bezier(0.25,0.8,0.25,1);
-            position: relative;
-            overflow: hidden;
-        }
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--card-accent, var(--cyan)), transparent);
-            opacity: 0;
-            transition: opacity 0.35s;
-        }
-        .skill-card:hover::before { opacity: 1; }
-        .skill-card:hover {
-            border-color: rgba(99,210,255,0.2);
-            transform: translateY(-8px);
-            background: var(--surface2);
-            box-shadow: 0 24px 48px rgba(0,0,0,0.3);
-        }
-        .skill-card:nth-child(1) { --card-accent: var(--cyan); }
-        .skill-card:nth-child(2) { --card-accent: var(--violet); }
-        .skill-card:nth-child(3) { --card-accent: var(--pink); }
-        .skill-card:nth-child(4) { --card-accent: var(--green); }
-
-        .skill-icon {
-            width: 52px; height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            background: rgba(255,255,255,0.05);
-        }
-        .skill-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.25rem;
-            color: var(--text);
-        }
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-        .tag {
-            font-size: 0.78rem;
-            font-weight: 500;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            background: rgba(255,255,255,0.06);
-            color: var(--text-dim);
-            border: 1px solid var(--border);
-            transition: all 0.2s;
-        }
-        .skill-card:hover .tag {
-            background: rgba(99,210,255,0.08);
-            color: var(--cyan);
-            border-color: rgba(99,210,255,0.2);
-        }
-
-        /* ── PROJECTS ── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.25,0.8,0.25,1);
-            display: flex;
-            flex-direction: column;
-        }
-        .project-card:hover {
-            border-color: rgba(167,139,250,0.3);
-            transform: translateY(-8px);
-            box-shadow: 0 24px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(167,139,250,0.1);
-        }
-
-        .project-top {
-            padding: 2rem 2rem 1.25rem;
-            flex: 1;
-        }
-        .project-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-        }
-        .project-emoji {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        .project-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.65rem;
-            letter-spacing: -0.3px;
-        }
-        .project-card p {
-            color: var(--text-dim);
-            font-size: 0.92rem;
-            line-height: 1.7;
-        }
-
-        .project-bottom {
-            padding: 0 2rem 1.75rem;
-        }
-        .proj-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            margin-bottom: 1.25rem;
-        }
-        .proj-tag {
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 0.25rem 0.65rem;
-            border-radius: 50px;
-            background: rgba(99,210,255,0.08);
-            color: var(--cyan);
-            border: 1px solid rgba(99,210,255,0.15);
-            letter-spacing: 0.3px;
-        }
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .project-link:hover { color: var(--violet); }
-        .project-link svg { transition: transform 0.2s; }
-        .project-link:hover svg { transform: translate(2px, -2px); }
-
-        /* ── CONTACT ── */
-        #contato {
-            text-align: center;
-        }
-        .contact-inner {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .contact-inner h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            letter-spacing: -1.5px;
-            margin-bottom: 1.25rem;
-        }
-        .contact-inner p {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-        .social-btn {
-            width: 52px; height: 52px;
-            border-radius: 14px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.25rem;
-        }
-        .social-btn:hover {
-            background: var(--surface2);
-            border-color: var(--border-hover);
-            color: var(--cyan);
-            transform: translateY(-4px) rotate(-5deg);
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid var(--border);
-            padding: 2rem 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-        footer a { color: var(--cyan); text-decoration: none; }
-
-        /* ── DIVIDER ── */
-        .divider {
-            max-width: 1100px;
-            margin: 0 auto;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-        }
-
-        /* ── REVEAL ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.65s ease, transform 0.65s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ── MOBILE ── */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .stats-row { grid-template-columns: repeat(3, 1fr); }
-            .projects-grid { grid-template-columns: 1fr; }
-            .hero h1 { letter-spacing: -1px; }
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--cyan-dark); }
-    </style>
+/* MOBILE */
+@media(max-width:900px){.nl{display:none}.ag{grid-template-columns:1fr;gap:2.5rem}.stats-wrap{grid-template-columns:1fr}.streak-wrap{grid-column:auto}.pg{grid-template-columns:1fr}.l1{letter-spacing:-1px}.hero-stats{gap:1.5rem}}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--s2);border-radius:4px}
+</style>
 </head>
 <body>
-<div class="blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-</div>
+<div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 
 <!-- NAV -->
-<nav id="navbar">
-    <a href="#home" class="logo">&lt;<span>Hugo</span>Rosa /&gt;</a>
-    <div class="nav-right">
-        <ul class="nav-links">
-            <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
-            <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-            <li><a href="#projetos" data-i18n="nav.projects">Projetos</a></li>
-            <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
-        </ul>
-        <button class="lang-btn" id="langToggle" aria-label="Switch language">
-            <span class="flag" id="langFlag">🇺🇸</span>
-            <span class="lang-label" id="langLabel">EN</span>
-        </button>
-    </div>
+<nav id="nav">
+  <a href="#home" class="logo">&lt;<span>Hugo</span>Rosa /&gt;</a>
+  <div class="nr">
+    <ul class="nl">
+      <li><a href="#sobre" data-i="nav.about">Sobre</a></li>
+      <li><a href="#exp" data-i="nav.exp">Experiência</a></li>
+      <li><a href="#skills" data-i="nav.skills">Skills</a></li>
+      <li><a href="#projetos" data-i="nav.projects">Projetos</a></li>
+      <li><a href="#edu" data-i="nav.edu">Formação</a></li>
+      <li><a href="#contato" data-i="nav.contact">Contato</a></li>
+    </ul>
+    <button class="lb" id="lb"><span id="lf">&#x1F1FA;&#x1F1F8;</span><span id="ll">EN</span></button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-    <div class="hero-inner">
-        <div class="hero-badge">
-            <span class="dot"></span>
-            <span data-i18n="hero.badge">Disponível para projetos</span>
-        </div>
-        <h1>
-            <span class="line1">Hugo Rosa</span>
-            <span class="line2" data-i18n="hero.title">Full Stack & DevOps</span>
-        </h1>
-        <p class="hero-desc" data-i18n="hero.desc">
-            Transformando ideias em código e automação. Especialista em chatbots, integrações com IA e infraestrutura escalável.
-        </p>
-        <div class="hero-cta">
-            <a href="#projetos" class="btn btn-primary" data-i18n="hero.cta1">Ver Projetos →</a>
-            <a href="https://github.com/hugors" target="_blank" class="btn btn-outline" data-i18n="hero.cta2">GitHub ↗</a>
-        </div>
+  <div class="hi">
+    <div class="hb"><span class="dot"></span><span data-i="hero.badge">Especialista em Sistemas · 17+ anos de experiência</span></div>
+    <h1>
+      <span class="l1">Hugo Rosa</span>
+      <span class="l2" data-i="hero.title">Especialista em Sistemas & Dados | Automação, BI & DevOps</span>
+    </h1>
+    <p class="hd" data-i="hero.desc">Com mais de 17 anos na Claro Brasil, desenvolvo e automatizo soluções que suportam processos críticos. Especialista em BI, integração de sistemas, DevOps e desenvolvimento Full Stack.</p>
+    <div class="hc">
+      <a href="#exp" class="btn bp" data-i="hero.cta1">Ver Experiência →</a>
+      <a href="#projetos" class="btn bo" data-i="hero.cta2">Projetos ↗</a>
     </div>
-    <div class="scroll-hint">
-        <span data-i18n="hero.scroll">scroll</span>
-        <div class="scroll-line"></div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">17+</div><div class="hs-lbl" data-i="hs.years">Anos de Exp.</div></div>
+      <div class="hs-div"></div>
+      <div class="hs"><div class="hs-num">30+</div><div class="hs-lbl" data-i="hs.projects">Projetos</div></div>
+      <div class="hs-div"></div>
+      <div class="hs"><div class="hs-num">4</div><div class="hs-lbl" data-i="hs.companies">Empresas</div></div>
+      <div class="hs-div"></div>
+      <div class="hs"><div class="hs-num">5+</div><div class="hs-lbl" data-i="hs.certs">Certificações</div></div>
     </div>
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section id="sobre">
-    <div class="about-grid">
-        <div class="about-portrait reveal">
-            <img src="https://avatars.githubusercontent.com/u/358815?v=4" alt="Hugo Rosa">
-            <div class="img-overlay">
-                <span data-i18n="about.available">✦ Open to Work</span>
-            </div>
-        </div>
-        <div class="about-text reveal">
-            <div class="section-label" data-i18n="about.label">Sobre mim</div>
-            <h3 data-i18n="about.heading">Construindo o futuro através da <em>automação inteligente</em></h3>
-            <p data-i18n="about.p1">Sou um desenvolvedor Full Stack com foco em DevOps e automação. Minha jornada é marcada pela criação de soluções que conectam APIs, inteligência artificial e infraestrutura robusta.</p>
-            <p data-i18n="about.p2">Atualmente desenvolvo chatbots humanizados, sistemas de automação e trabalho com tecnologias como Docker, Vagrant e diversas APIs de IA.</p>
-            <div class="stats-row">
-                <div class="stat">
-                    <div class="stat-num">30+</div>
-                    <div class="stat-lbl" data-i18n="about.stat1">Projetos</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num">5+</div>
-                    <div class="stat-lbl" data-i18n="about.stat2">Linguagens</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num">∞</div>
-                    <div class="stat-lbl" data-i18n="about.stat3">Cafés ☕</div>
-                </div>
-            </div>
-        </div>
+  <div class="ag">
+    <div class="ap anim">
+      <img src="https://avatars.githubusercontent.com/u/358815?v=4" alt="Hugo Rosa">
+      <div class="io">&#x2714; Claro Brasil · 17 anos</div>
     </div>
+    <div class="at anim">
+      <div class="sl" data-i="about.label">Sobre mim</div>
+      <h3 data-i="about.heading">Criando soluções que geram <em>impacto real</em></h3>
+      <p data-i="about.p1">Com mais de 17 anos na Claro Brasil, atuo no desenvolvimento, automação e sustentação de soluções críticas de portabilidade. Minha atuação envolve modelagem e análise de dados, criação de soluções analíticas e relatórios de BI com SQL Server e Python.</p>
+      <p data-i="about.p2">Trabalho de forma integrada com equipes técnicas e de negócio na implementação de soluções escaláveis. Acredito que um bom desenvolvedor não apenas escreve código — ele cria soluções que geram impacto real.</p>
+      <div class="at-badges">
+        <span class="badge badge-c">🏢 Claro Brasil</span>
+        <span class="badge badge-v">🎓 Eng. de Software</span>
+        <span class="badge badge-g">🤖 Pós IA & Data Science</span>
+        <span class="badge badge-o">📍 Rio de Janeiro</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="divider"></div>
+<div class="dv"></div>
+
+<!-- EXPERIENCE -->
+<section id="exp">
+  <div class="sh mw anim">
+    <div class="sl" data-i="exp.label">Trajetória</div>
+    <h2 class="stitle" data-i="exp.title">Experiência Profissional</h2>
+    <p class="ssub" data-i="exp.sub">Mais de 17 anos construindo soluções corporativas de impacto.</p>
+  </div>
+  <div class="timeline">
+
+    <div class="titem anim">
+      <div class="t-header">
+        <div class="t-role" data-i="e1.role">Especialista em Sistemas e Dados</div>
+        <div class="t-period">2008 – <span data-i="present">Presente</span></div>
+      </div>
+      <div class="t-company"><span>Claro Brasil</span> · Rio de Janeiro</div>
+      <ul class="t-desc">
+        <li data-i="e1.b1">Desenvolvimento e acompanhamento de projetos de portabilidade e seus processos críticos</li>
+        <li data-i="e1.b2">Relatórios gerenciais e soluções de BI com Microsoft SQL Server e Python</li>
+        <li data-i="e1.b3">Automação de processos e sustentação de sistemas corporativos de alta criticidade</li>
+        <li data-i="e1.b4">Integração com equipes técnicas e de negócio para implementação de soluções escaláveis</li>
+      </ul>
+    </div>
+
+    <div class="titem anim">
+      <div class="t-header">
+        <div class="t-role" data-i="e2.role">Analista de Desenvolvimento</div>
+        <div class="t-period">Mar 2025 – <span data-i="present">Presente</span></div>
+      </div>
+      <div class="t-company"><span>Universidade Castelo Branco (UCB)</span> · Brasil</div>
+      <ul class="t-desc">
+        <li data-i="e2.b1">Desenvolvimento de sistemas web institucionais</li>
+        <li data-i="e2.b2">Atuação como desenvolvedor web com foco em soluções acadêmicas</li>
+      </ul>
+    </div>
+
+    <div class="titem anim">
+      <div class="t-header">
+        <div class="t-role" data-i="e3.role">Analista de Sistemas Sênior</div>
+        <div class="t-period">Set 2008 – <span data-i="present">Presente</span></div>
+      </div>
+      <div class="t-company"><span>Embratel</span> · Centro, Rio de Janeiro</div>
+      <ul class="t-desc">
+        <li data-i="e3.b1">Foco em soluções corporativas de alta criticidade</li>
+        <li data-i="e3.b2">Controle e gestão de demandas e projetos estratégicos</li>
+        <li data-i="e3.b3">Atendimento a solicitações críticas com alta complexidade técnica</li>
+      </ul>
+    </div>
+
+    <div class="titem anim">
+      <div class="t-header">
+        <div class="t-role" data-i="e4.role">Fundador & Consultor de TI</div>
+        <div class="t-period">2019 – <span data-i="present">Presente</span></div>
+      </div>
+      <div class="t-company"><span>Hugo Consultoria TI</span> · Rio de Janeiro</div>
+      <ul class="t-desc">
+        <li data-i="e4.b1">Consultoria em soluções de TI para empresas</li>
+        <li data-i="e4.b2">Soluções de marketing digital e ferramentas tecnológicas</li>
+        <li data-i="e4.b3">Desenvolvimento e implantação de sistemas sob medida</li>
+      </ul>
+    </div>
+
+    <div class="titem anim">
+      <div class="t-header">
+        <div class="t-role" data-i="e5.role">Analista de Produção</div>
+        <div class="t-period">Jan 2006 – Set 2008</div>
+      </div>
+      <div class="t-company"><span>BrasilCenter</span></div>
+      <ul class="t-desc">
+        <li data-i="e5.b1">Controle de URAs e escalas operacionais</li>
+        <li data-i="e5.b2">Relatórios gerenciais e controle de produção em Call Center</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="dv"></div>
 
 <!-- SKILLS -->
 <section id="skills">
-    <div class="section-head reveal" style="max-width:1100px;margin:0 auto 4rem">
-        <div class="section-label" data-i18n="skills.label">Tecnologias</div>
-        <h2 class="section-title" data-i18n="skills.title">Stack & Skills</h2>
-        <p class="section-subtitle" data-i18n="skills.subtitle">Ferramentas que uso para criar soluções que escalam.</p>
-    </div>
-    <div class="skills-grid">
-        <div class="skill-card reveal">
-            <div class="skill-icon">💻</div>
-            <h3 data-i18n="skills.c1.title">Frontend & Backend</h3>
-            <div class="tags">
-                <span class="tag">JavaScript</span><span class="tag">Node.js</span>
-                <span class="tag">Python</span><span class="tag">Java</span>
-                <span class="tag">PHP</span><span class="tag">HTML/CSS</span>
-            </div>
-        </div>
-        <div class="skill-card reveal">
-            <div class="skill-icon">🤖</div>
-            <h3 data-i18n="skills.c2.title">IA & Automação</h3>
-            <div class="tags">
-                <span class="tag">OpenAI API</span><span class="tag">Chatbots</span>
-                <span class="tag">WhatsApp API</span><span class="tag">MediaPipe</span>
-                <span class="tag">Computer Vision</span><span class="tag">LLMs</span>
-            </div>
-        </div>
-        <div class="skill-card reveal">
-            <div class="skill-icon">⚙️</div>
-            <h3 data-i18n="skills.c3.title">DevOps & Infra</h3>
-            <div class="tags">
-                <span class="tag">Docker</span><span class="tag">Vagrant</span>
-                <span class="tag">Linux</span><span class="tag">Shell Script</span>
-                <span class="tag">Git / GitHub</span><span class="tag">CI/CD</span>
-            </div>
-        </div>
-        <div class="skill-card reveal">
-            <div class="skill-icon">🗄️</div>
-            <h3 data-i18n="skills.c4.title">Banco de Dados</h3>
-            <div class="tags">
-                <span class="tag">MariaDB</span><span class="tag">MySQL</span>
-                <span class="tag">MongoDB</span><span class="tag">REST APIs</span>
-                <span class="tag">JSON</span><span class="tag">ORM</span>
-            </div>
-        </div>
-    </div>
+  <div class="sh mw anim">
+    <div class="sl" data-i="sk.label">Tecnologias</div>
+    <h2 class="stitle" data-i="sk.title">Stack & Skills</h2>
+    <p class="ssub" data-i="sk.sub">Ferramentas que uso para criar soluções que escalam.</p>
+  </div>
+  <div class="sg">
+    <div class="sc2 anim"><div class="si">&#x1F4BB;</div><h3 data-i="sk.c1">Frontend & Backend</h3><div class="tgs"><span class="tg">JavaScript</span><span class="tg">Node.js</span><span class="tg">Python</span><span class="tg">Java</span><span class="tg">PHP</span><span class="tg">HTML/CSS</span><span class="tg">Bootstrap</span></div></div>
+    <div class="sc2 anim"><div class="si">&#x1F4CA;</div><h3 data-i="sk.c5">BI & Dados</h3><div class="tgs"><span class="tg">SQL Server</span><span class="tg">PL/SQL</span><span class="tg">Power BI</span><span class="tg">PostgreSQL</span><span class="tg">MariaDB</span><span class="tg">MySQL</span><span class="tg">MongoDB</span></div></div>
+    <div class="sc2 anim"><div class="si">&#x1F916;</div><h3 data-i="sk.c2">IA & Automação</h3><div class="tgs"><span class="tg">OpenAI API</span><span class="tg">Chatbots</span><span class="tg">WhatsApp API</span><span class="tg">MediaPipe</span><span class="tg">Computer Vision</span><span class="tg">LLMs</span></div></div>
+    <div class="sc2 anim"><div class="si">&#x2699;&#xFE0F;</div><h3 data-i="sk.c3">DevOps & Infra</h3><div class="tgs"><span class="tg">Docker</span><span class="tg">Vagrant</span><span class="tg">Linux</span><span class="tg">Nginx</span><span class="tg">Apache</span><span class="tg">GitHub Actions</span><span class="tg">CI/CD</span></div></div>
+    <div class="sc2 anim"><div class="si">&#x1F527;</div><h3 data-i="sk.c6">Ferramentas</h3><div class="tgs"><span class="tg">Git / GitHub</span><span class="tg">Postman</span><span class="tg">Insomnia</span><span class="tg">VS Code</span><span class="tg">WSL2</span><span class="tg">Shell Script</span></div></div>
+    <div class="sc2 anim"><div class="si">&#x1F9E0;</div><h3 data-i="sk.c7">Metodologias</h3><div class="tgs"><span class="tg">MVC</span><span class="tg">Microsserviços</span><span class="tg">REST APIs</span><span class="tg">Ágil / Scrum</span><span class="tg">CI/CD</span><span class="tg">Docker Compose</span></div></div>
+  </div>
 </section>
 
-<div class="divider"></div>
+<div class="dv"></div>
+
+<!-- GITHUB STATS -->
+<section id="ghstats">
+  <div class="sh mw anim">
+    <div class="sl" data-i="gh.label">GitHub</div>
+    <h2 class="stitle" data-i="gh.title">GitHub Stats</h2>
+    <p class="ssub" data-i="gh.sub">Atividade e linguagens mais utilizadas nos projetos.</p>
+  </div>
+  <div class="stats-wrap anim">
+    <div class="stat-img streak-wrap">
+      <img src="https://streak-stats.demolab.com/?user=hugors&theme=dark&hide_border=true&background=0d1420&ring=30A3DC&fire=E94D5F&currStreakLabel=E94D5F" alt="GitHub Streak" loading="lazy">
+    </div>
+    <div class="stat-img">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hugors&layout=compact&theme=dark&bg_color=0d1420&border_color=30A3DC&title_color=E94D5F&text_color=FFF&hide_border=true" alt="Top Languages" loading="lazy">
+    </div>
+    <div class="stat-img">
+      <img src="https://github-readme-stats.vercel.app/api?username=hugors&show_icons=true&theme=dark&bg_color=0d1420&border_color=30A3DC&title_color=63d2ff&text_color=8899b2&icon_color=a78bfa&hide_border=true" alt="GitHub Stats" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
 
 <!-- PROJECTS -->
 <section id="projetos">
-    <div class="section-head reveal" style="max-width:1200px;margin:0 auto 4rem">
-        <div class="section-label" data-i18n="projects.label">Portfólio</div>
-        <h2 class="section-title" data-i18n="projects.title">Projetos em Destaque</h2>
-        <p class="section-subtitle" data-i18n="projects.subtitle">Uma seleção dos trabalhos mais relevantes.</p>
-    </div>
-    <div class="projects-grid">
-
-        <div class="project-card reveal">
-            <div class="project-top">
-                <div class="project-num">01</div>
-                <span class="project-emoji">🤖</span>
-                <h3>Chat VPS — Projeto EVA</h3>
-                <p data-i18n="proj.1.desc">Chatbot avançado via WhatsApp com integração multi-plataforma. Sistema robusto de automação conversacional.</p>
-            </div>
-            <div class="project-bottom">
-                <div class="proj-tags">
-                    <span class="proj-tag">JavaScript</span>
-                    <span class="proj-tag">Node.js</span>
-                    <span class="proj-tag">WhatsApp API</span>
-                </div>
-                <a href="https://github.com/hugors/Chat_vps" target="_blank" class="project-link">
-                    GitHub
-                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="project-card reveal">
-            <div class="project-top">
-                <div class="project-num">02</div>
-                <span class="project-emoji">💬</span>
-                <h3 data-i18n="proj.2.title">Chat OpenAI Humanizado</h3>
-                <p data-i18n="proj.2.desc">Chatbot com personalidade humanizada via OpenAI API. Experiência conversacional natural e contextual.</p>
-            </div>
-            <div class="project-bottom">
-                <div class="proj-tags">
-                    <span class="proj-tag">JavaScript</span>
-                    <span class="proj-tag">OpenAI</span>
-                    <span class="proj-tag">NLP</span>
-                </div>
-                <a href="https://github.com/hugors/chatOpenai" target="_blank" class="project-link">
-                    GitHub
-                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="project-card reveal">
-            <div class="project-top">
-                <div class="project-num">03</div>
-                <span class="project-emoji">📅</span>
-                <h3>Chat Calendar</h3>
-                <p data-i18n="proj.3.desc">Assistente virtual integrado com Google Calendar para gerenciamento inteligente de agendamentos via chat.</p>
-            </div>
-            <div class="project-bottom">
-                <div class="proj-tags">
-                    <span class="proj-tag">JavaScript</span>
-                    <span class="proj-tag">Google API</span>
-                    <span class="proj-tag">Calendar</span>
-                </div>
-                <a href="https://github.com/hugors/chatcalendar" target="_blank" class="project-link">
-                    GitHub
-                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="project-card reveal">
-            <div class="project-top">
-                <div class="project-num">04</div>
-                <span class="project-emoji">✋</span>
-                <h3 data-i18n="proj.4.title">Projeto Hands</h3>
-                <p data-i18n="proj.4.desc">Sistema de visão computacional para contagem de dedos e tracking de mãos usando MediaPipe e OpenCV.</p>
-            </div>
-            <div class="project-bottom">
-                <div class="proj-tags">
-                    <span class="proj-tag">Python</span>
-                    <span class="proj-tag">OpenCV</span>
-                    <span class="proj-tag">MediaPipe</span>
-                </div>
-                <a href="https://github.com/hugors/projeto_hands" target="_blank" class="project-link">
-                    GitHub
-                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="project-card reveal">
-            <div class="project-top">
-                <div class="project-num">05</div>
-                <span class="project-emoji">🗄️</span>
-                <h3>API MariaDB</h3>
-                <p data-i18n="proj.5.desc">API REST robusta para operações CRUD em MariaDB. Arquitetura escalável e segura.</p>
-            </div>
-            <div class="project-bottom">
-                <div class="proj-tags">
-                    <span class="proj-tag">Node.js</span>
-                    <span class="proj-tag">MariaDB</span>
-                    <span class="proj-tag">REST API</span>
-                </div>
-                <a href="https://github.com/hugors/API_MARIADB" target="_blank" class="project-link">
-                    GitHub
-                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="project-card reveal">
-            <div class="project-top">
-                <div class="project-num">06</div>
-                <span class="project-emoji">🖥️</span>
-                <h3 data-i18n="proj.6.title">Projeto VM Vagrant</h3>
-                <p data-i18n="proj.6.desc">Automação completa de provisionamento de máquinas virtuais usando Vagrant e Shell Script.</p>
-            </div>
-            <div class="project-bottom">
-                <div class="proj-tags">
-                    <span class="proj-tag">Vagrant</span>
-                    <span class="proj-tag">Shell</span>
-                    <span class="proj-tag">DevOps</span>
-                </div>
-                <a href="https://github.com/hugors/projeto_vm_vagrant" target="_blank" class="project-link">
-                    GitHub
-                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </div>
-
-    </div>
+  <div class="sh mw anim">
+    <div class="sl" data-i="pr.label">Portfólio</div>
+    <h2 class="stitle" data-i="pr.title">Projetos em Destaque</h2>
+    <p class="ssub" data-i="pr.sub">Uma seleção dos trabalhos mais relevantes.</p>
+  </div>
+  <div class="pg">
+    <div class="pc anim"><div class="pt"><div class="pn">01</div><span class="pe">&#x1F916;</span><h3>Chat VPS — Projeto EVA</h3><p data-i="p1.d">Chatbot avançado via WhatsApp com integração multi-plataforma. Sistema robusto de automação conversacional.</p></div><div class="pb"><div class="ptgs"><span class="ptg">JavaScript</span><span class="ptg">Node.js</span><span class="ptg">WhatsApp API</span></div><a href="https://github.com/hugors/Chat_vps" target="_blank" class="pl2">GitHub <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="pc anim"><div class="pt"><div class="pn">02</div><span class="pe">&#x1F4AC;</span><h3 data-i="p2.t">Chat OpenAI Humanizado</h3><p data-i="p2.d">Chatbot com personalidade humanizada via OpenAI API. Experiência conversacional natural e contextual.</p></div><div class="pb"><div class="ptgs"><span class="ptg">JavaScript</span><span class="ptg">OpenAI</span><span class="ptg">NLP</span></div><a href="https://github.com/hugors/chatOpenai" target="_blank" class="pl2">GitHub <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="pc anim"><div class="pt"><div class="pn">03</div><span class="pe">&#x1F4C5;</span><h3>Chat Calendar</h3><p data-i="p3.d">Assistente virtual integrado com Google Calendar para gerenciamento inteligente de agendamentos via chat.</p></div><div class="pb"><div class="ptgs"><span class="ptg">JavaScript</span><span class="ptg">Google API</span><span class="ptg">Calendar</span></div><a href="https://github.com/hugors/chatcalendar" target="_blank" class="pl2">GitHub <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="pc anim"><div class="pt"><div class="pn">04</div><span class="pe">&#x270B;</span><h3 data-i="p4.t">Projeto Hands</h3><p data-i="p4.d">Sistema de visão computacional para contagem de dedos e tracking de mãos usando MediaPipe e OpenCV.</p></div><div class="pb"><div class="ptgs"><span class="ptg">Python</span><span class="ptg">OpenCV</span><span class="ptg">MediaPipe</span></div><a href="https://github.com/hugors/projeto_hands" target="_blank" class="pl2">GitHub <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="pc anim"><div class="pt"><div class="pn">05</div><span class="pe">&#x1F5C4;&#xFE0F;</span><h3>API MariaDB</h3><p data-i="p5.d">API REST robusta para operações CRUD em MariaDB. Arquitetura escalável e segura.</p></div><div class="pb"><div class="ptgs"><span class="ptg">Node.js</span><span class="ptg">MariaDB</span><span class="ptg">REST API</span></div><a href="https://github.com/hugors/API_MARIADB" target="_blank" class="pl2">GitHub <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="pc anim"><div class="pt"><div class="pn">06</div><span class="pe">&#x1F5A5;&#xFE0F;</span><h3 data-i="p6.t">Projeto VM Vagrant</h3><p data-i="p6.d">Automação completa de provisionamento de máquinas virtuais usando Vagrant e Shell Script.</p></div><div class="pb"><div class="ptgs"><span class="ptg">Vagrant</span><span class="ptg">Shell</span><span class="ptg">DevOps</span></div><a href="https://github.com/hugors/projeto_vm_vagrant" target="_blank" class="pl2">GitHub <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg></a></div></div>
+  </div>
 </section>
+
+<div class="dv"></div>
+
+<!-- EDUCATION -->
+<section id="edu">
+  <div class="sh mw anim">
+    <div class="sl" data-i="edu.label">Formação</div>
+    <h2 class="stitle" data-i="edu.title">Educação & Certificações</h2>
+    <p class="ssub" data-i="edu.sub">Formação acadêmica e cursos de especialização.</p>
+  </div>
+  <div class="edu-grid mw anim">
+    <div class="edu-card">
+      <div class="edu-icon">&#x1F393;</div>
+      <div class="edu-degree" data-i="ed1.deg">Engenharia de Software</div>
+      <div class="edu-field" data-i="ed1.field">Graduação</div>
+      <div class="edu-school">FAMESP – Faculdade Método de São Paulo</div>
+      <div class="edu-period">Jun 2025 – Jun 2026</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">&#x1F9E0;</div>
+      <div class="edu-degree" data-i="ed2.deg">Inteligência Artificial & Ciência de Dados</div>
+      <div class="edu-field" data-i="ed2.field">Pós-graduação (Lato Sensu)</div>
+      <div class="edu-school">Centro Universitário IBMR</div>
+      <div class="edu-period">Out 2023 – Dez 2024</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">&#x1F4BB;</div>
+      <div class="edu-degree" data-i="ed3.deg">Análise de Sistemas</div>
+      <div class="edu-field" data-i="ed3.field">Graduação · TI</div>
+      <div class="edu-school">Centro Universitário Carioca</div>
+      <div class="edu-period">–</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">&#x1F4BC;</div>
+      <div class="edu-degree" data-i="ed4.deg">MBA em Gestão de Sistemas de Informação</div>
+      <div class="edu-field">MBA</div>
+      <div class="edu-school">Faculdade Filosofia de Campo Grande</div>
+      <div class="edu-period">–</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">&#x1F5A5;&#xFE0F;</div>
+      <div class="edu-degree" data-i="ed5.deg">Técnico em Processamento de Dados</div>
+      <div class="edu-field" data-i="ed5.field">Ensino Técnico · TI</div>
+      <div class="edu-school">Colégio Antonio de Pádua</div>
+      <div class="edu-period">1980 – 1986</div>
+    </div>
+  </div>
+
+  <div style="max-width:1100px;margin:3rem auto 0">
+    <div class="sl" style="margin-bottom:1.5rem" data-i="cert.label">Certificações</div>
+    <div class="cert-grid anim">
+      <div class="cert"><span>&#x1F3C6;</span> NICE | Automação</div>
+      <div class="cert"><span>&#x1F4CA;</span> Big Data Analytics</div>
+      <div class="cert"><span>&#x1F9E0;</span> Aprendizado de Máquina</div>
+      <div class="cert"><span>&#x1F4A1;</span> Gestão do Conhecimento & BI</div>
+      <div class="cert"><span>&#x1F4F1;</span> Marketing Digital</div>
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
 
 <!-- CONTACT -->
 <section id="contato">
-    <div class="contact-inner reveal">
-        <div class="section-label" data-i18n="contact.label">Contato</div>
-        <h2 data-i18n="contact.title">Vamos trabalhar juntos?</h2>
-        <p data-i18n="contact.desc">Aberto a novos desafios e colaborações. Vamos criar algo incrível!</p>
-        <a href="https://github.com/hugors" target="_blank" class="btn btn-primary" data-i18n="contact.cta">Acessar GitHub →</a>
-        <div class="socials">
-            <a href="https://github.com/hugors" target="_blank" class="social-btn" title="GitHub">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
-            </a>
-            <a href="#" class="social-btn" title="LinkedIn">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
-            </a>
-            <a href="/cdn-cgi/l/email-protection#fb938e9c94bb9e839a968b979ed5989496" class="social-btn" title="Email">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </a>
-        </div>
+  <div class="ci anim">
+    <div class="sl" data-i="ct.label">Contato</div>
+    <h2 data-i="ct.title">Vamos trabalhar juntos?</h2>
+    <p data-i="ct.desc">Aberto a novos desafios e colaborações. Entre em contato!</p>
+    <div class="contact-info">
+      <a href="mailto:contatocftvon@gmail.com" class="cinfo">&#x2709;&#xFE0F; contatocftvon@gmail.com</a>
+      <a href="tel:+5521981764373" class="cinfo">&#x1F4DE; (21) 98176-4373</a>
+      <a href="https://www.linkedin.com/in/hugoluizrosa/" target="_blank" class="cinfo">&#x1F517; LinkedIn</a>
     </div>
+    <a href="https://github.com/hugors" target="_blank" class="btn bp" data-i="ct.cta">Acessar GitHub →</a>
+    <div class="soc">
+      <a href="https://github.com/hugors" target="_blank" class="sb" title="GitHub"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg></a>
+      <a href="https://www.linkedin.com/in/hugoluizrosa/" target="_blank" class="sb" title="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg></a>
+      <a href="https://www.instagram.com/hugorosa/" target="_blank" class="sb" title="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="mailto:contatocftvon@gmail.com" class="sb" title="Email"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-    <span>© 2026 Hugo Rosa</span>
-    <span data-i18n="footer.made">Feito com ♥ e muito ☕</span>
+  <span>© 2026 Hugo Luiz Rosa da Silva</span>
+  <span data-i="ft.made">Feito com ♥ e muito ☕ · Rio de Janeiro</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── i18n ──────────────────────────────────────────────────────────────────────
-const translations = {
-    pt: {
-        "nav.about":       "Sobre",
-        "nav.skills":      "Skills",
-        "nav.projects":    "Projetos",
-        "nav.contact":     "Contato",
-        "hero.badge":      "Disponível para projetos",
-        "hero.title":      "Full Stack & DevOps",
-        "hero.desc":       "Transformando ideias em código e automação. Especialista em chatbots, integrações com IA e infraestrutura escalável.",
-        "hero.cta1":       "Ver Projetos →",
-        "hero.cta2":       "GitHub ↗",
-        "hero.scroll":     "scroll",
-        "about.label":     "Sobre mim",
-        "about.available": "✦ Aberto a Oportunidades",
-        "about.heading":   "Construindo o futuro através da <em>automação inteligente</em>",
-        "about.p1":        "Sou um desenvolvedor Full Stack com foco em DevOps e automação. Minha jornada é marcada pela criação de soluções que conectam APIs, inteligência artificial e infraestrutura robusta.",
-        "about.p2":        "Atualmente desenvolvo chatbots humanizados, sistemas de automação e trabalho com tecnologias como Docker, Vagrant e diversas APIs de IA.",
-        "about.stat1":     "Projetos",
-        "about.stat2":     "Linguagens",
-        "about.stat3":     "Cafés ☕",
-        "skills.label":    "Tecnologias",
-        "skills.title":    "Stack & Skills",
-        "skills.subtitle": "Ferramentas que uso para criar soluções que escalam.",
-        "skills.c1.title": "Frontend & Backend",
-        "skills.c2.title": "IA & Automação",
-        "skills.c3.title": "DevOps & Infra",
-        "skills.c4.title": "Banco de Dados",
-        "projects.label":  "Portfólio",
-        "projects.title":  "Projetos em Destaque",
-        "projects.subtitle":"Uma seleção dos trabalhos mais relevantes.",
-        "proj.1.desc":     "Chatbot avançado via WhatsApp com integração multi-plataforma. Sistema robusto de automação conversacional.",
-        "proj.2.title":    "Chat OpenAI Humanizado",
-        "proj.2.desc":     "Chatbot com personalidade humanizada via OpenAI API. Experiência conversacional natural e contextual.",
-        "proj.3.desc":     "Assistente virtual integrado com Google Calendar para gerenciamento inteligente de agendamentos via chat.",
-        "proj.4.title":    "Projeto Hands",
-        "proj.4.desc":     "Sistema de visão computacional para contagem de dedos e tracking de mãos usando MediaPipe e OpenCV.",
-        "proj.5.desc":     "API REST robusta para operações CRUD em MariaDB. Arquitetura escalável e segura.",
-        "proj.6.title":    "Projeto VM Vagrant",
-        "proj.6.desc":     "Automação completa de provisionamento de máquinas virtuais usando Vagrant e Shell Script.",
-        "contact.label":   "Contato",
-        "contact.title":   "Vamos trabalhar juntos?",
-        "contact.desc":    "Aberto a novos desafios e colaborações. Vamos criar algo incrível!",
-        "contact.cta":     "Acessar GitHub →",
-        "footer.made":     "Feito com ♥ e muito ☕",
-    },
-    en: {
-        "nav.about":       "About",
-        "nav.skills":      "Skills",
-        "nav.projects":    "Projects",
-        "nav.contact":     "Contact",
-        "hero.badge":      "Available for projects",
-        "hero.title":      "Full Stack & DevOps",
-        "hero.desc":       "Turning ideas into code and automation. Specialist in chatbots, AI integrations, and scalable infrastructure.",
-        "hero.cta1":       "View Projects →",
-        "hero.cta2":       "GitHub ↗",
-        "hero.scroll":     "scroll",
-        "about.label":     "About me",
-        "about.available": "✦ Open to Opportunities",
-        "about.heading":   "Building the future through <em>intelligent automation</em>",
-        "about.p1":        "I'm a Full Stack developer focused on DevOps and automation. My journey is defined by building solutions that connect APIs, artificial intelligence, and robust infrastructure.",
-        "about.p2":        "I currently develop humanized chatbots, automation systems, and work with technologies like Docker, Vagrant, and various AI APIs.",
-        "about.stat1":     "Projects",
-        "about.stat2":     "Languages",
-        "about.stat3":     "Coffees ☕",
-        "skills.label":    "Technologies",
-        "skills.title":    "Stack & Skills",
-        "skills.subtitle": "Tools I use to build solutions that scale.",
-        "skills.c1.title": "Frontend & Backend",
-        "skills.c2.title": "AI & Automation",
-        "skills.c3.title": "DevOps & Infra",
-        "skills.c4.title": "Databases",
-        "projects.label":  "Portfolio",
-        "projects.title":  "Featured Projects",
-        "projects.subtitle":"A selection of my most relevant work.",
-        "proj.1.desc":     "Advanced WhatsApp chatbot with multi-platform integration. Robust conversational automation system.",
-        "proj.2.title":    "Humanized OpenAI Chat",
-        "proj.2.desc":     "Chatbot with humanized personality using the OpenAI API. Natural and contextual conversational experience.",
-        "proj.3.desc":     "Virtual assistant integrated with Google Calendar for intelligent appointment management via chat.",
-        "proj.4.title":    "Hands Project",
-        "proj.4.desc":     "Computer vision system for finger counting and hand tracking using MediaPipe and OpenCV.",
-        "proj.5.desc":     "Robust REST API for CRUD operations on MariaDB. Scalable and secure architecture.",
-        "proj.6.title":    "Vagrant VM Project",
-        "proj.6.desc":     "Full virtual machine provisioning automation using Vagrant and Shell Script.",
-        "contact.label":   "Contact",
-        "contact.title":   "Let's work together?",
-        "contact.desc":    "Open to new challenges and collaborations. Let's build something amazing!",
-        "contact.cta":     "Visit GitHub →",
-        "footer.made":     "Made with ♥ and lots of ☕",
-    }
+<script>
+var T={
+pt:{"nav.about":"Sobre","nav.exp":"Experiência","nav.skills":"Skills","nav.projects":"Projetos","nav.edu":"Formação","nav.contact":"Contato","hero.badge":"Especialista em Sistemas · 17+ anos de experiência","hero.title":"Especialista em Sistemas & Dados | Automação, BI & DevOps","hero.desc":"Com mais de 17 anos na Claro Brasil, desenvolvo e automatizo soluções que suportam processos críticos. Especialista em BI, integração de sistemas, DevOps e desenvolvimento Full Stack.","hero.cta1":"Ver Experiência →","hero.cta2":"Projetos ↗","hs.years":"Anos de Exp.","hs.projects":"Projetos","hs.companies":"Empresas","hs.certs":"Certificações","about.label":"Sobre mim","about.heading":"Criando soluções que geram <em>impacto real</em>","about.p1":"Com mais de 17 anos na Claro Brasil, atuo no desenvolvimento, automação e sustentação de soluções críticas de portabilidade. Minha atuação envolve modelagem e análise de dados, criação de soluções analíticas e relatórios de BI com SQL Server e Python.","about.p2":"Trabalho de forma integrada com equipes técnicas e de negócio na implementação de soluções escaláveis. Acredito que um bom desenvolvedor não apenas escreve código — ele cria soluções que geram impacto real.","exp.label":"Trajetória","exp.title":"Experiência Profissional","exp.sub":"Mais de 17 anos construindo soluções corporativas de impacto.","present":"Presente","e1.role":"Especialista em Sistemas e Dados","e1.b1":"Desenvolvimento e acompanhamento de projetos de portabilidade e seus processos críticos","e1.b2":"Relatórios gerenciais e soluções de BI com Microsoft SQL Server e Python","e1.b3":"Automação de processos e sustentação de sistemas corporativos de alta criticidade","e1.b4":"Integração com equipes técnicas e de negócio para implementação de soluções escaláveis","e2.role":"Analista de Desenvolvimento","e2.b1":"Desenvolvimento de sistemas web institucionais","e2.b2":"Atuação como desenvolvedor web com foco em soluções acadêmicas","e3.role":"Analista de Sistemas Sênior","e3.b1":"Foco em soluções corporativas de alta criticidade","e3.b2":"Controle e gestão de demandas e projetos estratégicos","e3.b3":"Atendimento a solicitações críticas com alta complexidade técnica","e4.role":"Fundador & Consultor de TI","e4.b1":"Consultoria em soluções de TI para empresas","e4.b2":"Soluções de marketing digital e ferramentas tecnológicas","e4.b3":"Desenvolvimento e implantação de sistemas sob medida","e5.role":"Analista de Produção","e5.b1":"Controle de URAs e escalas operacionais","e5.b2":"Relatórios gerenciais e controle de produção em Call Center","sk.label":"Tecnologias","sk.title":"Stack & Skills","sk.sub":"Ferramentas que uso para criar soluções que escalam.","sk.c1":"Frontend & Backend","sk.c5":"BI & Dados","sk.c2":"IA & Automação","sk.c3":"DevOps & Infra","sk.c6":"Ferramentas","sk.c7":"Metodologias","gh.label":"GitHub","gh.title":"GitHub Stats","gh.sub":"Atividade e linguagens mais utilizadas nos projetos.","pr.label":"Portfólio","pr.title":"Projetos em Destaque","pr.sub":"Uma seleção dos trabalhos mais relevantes.","p1.d":"Chatbot avançado via WhatsApp com integração multi-plataforma. Sistema robusto de automação conversacional.","p2.t":"Chat OpenAI Humanizado","p2.d":"Chatbot com personalidade humanizada via OpenAI API. Experiência conversacional natural e contextual.","p3.d":"Assistente virtual integrado com Google Calendar para gerenciamento inteligente de agendamentos via chat.","p4.t":"Projeto Hands","p4.d":"Sistema de visão computacional para contagem de dedos e tracking de mãos usando MediaPipe e OpenCV.","p5.d":"API REST robusta para operações CRUD em MariaDB. Arquitetura escalável e segura.","p6.t":"Projeto VM Vagrant","p6.d":"Automação completa de provisionamento de máquinas virtuais usando Vagrant e Shell Script.","edu.label":"Formação","edu.title":"Educação & Certificações","edu.sub":"Formação acadêmica e cursos de especialização.","ed1.deg":"Engenharia de Software","ed1.field":"Graduação","ed2.deg":"Inteligência Artificial & Ciência de Dados","ed2.field":"Pós-graduação (Lato Sensu)","ed3.deg":"Análise de Sistemas","ed3.field":"Graduação · TI","ed4.deg":"MBA em Gestão de Sistemas de Informação","ed5.deg":"Técnico em Processamento de Dados","ed5.field":"Ensino Técnico · TI","cert.label":"Certificações","ct.label":"Contato","ct.title":"Vamos trabalhar juntos?","ct.desc":"Aberto a novos desafios e colaborações. Entre em contato!","ct.cta":"Acessar GitHub →","ft.made":"Feito com ♥ e muito ☕ · Rio de Janeiro"},
+en:{"nav.about":"About","nav.exp":"Experience","nav.skills":"Skills","nav.projects":"Projects","nav.edu":"Education","nav.contact":"Contact","hero.badge":"Systems Specialist · 17+ years of experience","hero.title":"Systems & Data Specialist | Automation, BI & DevOps","hero.desc":"With 17+ years at Claro Brasil, I develop and automate solutions that support critical processes. Specialist in BI, system integration, DevOps and Full Stack development.","hero.cta1":"View Experience →","hero.cta2":"Projects ↗","hs.years":"Years Exp.","hs.projects":"Projects","hs.companies":"Companies","hs.certs":"Certifications","about.label":"About me","about.heading":"Building solutions that create <em>real impact</em>","about.p1":"With 17+ years at Claro Brasil, I work on development, automation and maintenance of critical portability solutions. My work involves data modeling and analysis, creation of analytical solutions and BI reports using SQL Server and Python.","about.p2":"I work integrated with technical and business teams implementing scalable solutions. I believe a good developer doesn't just write code — they create solutions that generate real impact.","exp.label":"Timeline","exp.title":"Professional Experience","exp.sub":"17+ years building impactful corporate solutions.","present":"Present","e1.role":"Systems & Data Specialist","e1.b1":"Development and management of portability projects and their critical processes","e1.b2":"Management reports and BI solutions using Microsoft SQL Server and Python","e1.b3":"Process automation and maintenance of high-criticality corporate systems","e1.b4":"Integrated work with technical and business teams to implement scalable solutions","e2.role":"Development Analyst","e2.b1":"Development of institutional web systems","e2.b2":"Web developer focused on academic solutions","e3.role":"Senior Systems Analyst","e3.b1":"Focus on high-criticality corporate solutions","e3.b2":"Control and management of strategic project demands","e3.b3":"Handling critical requests with high technical complexity","e4.role":"Founder & IT Consultant","e4.b1":"IT consulting solutions for companies","e4.b2":"Digital marketing solutions and technological tools","e4.b3":"Custom system development and deployment","e5.role":"Production Analyst","e5.b1":"URA and operational schedule control","e5.b2":"Management reports and Call Center production control","sk.label":"Technologies","sk.title":"Stack & Skills","sk.sub":"Tools I use to build solutions that scale.","sk.c1":"Frontend & Backend","sk.c5":"BI & Data","sk.c2":"AI & Automation","sk.c3":"DevOps & Infra","sk.c6":"Tools","sk.c7":"Methodologies","gh.label":"GitHub","gh.title":"GitHub Stats","gh.sub":"Activity and most used languages in projects.","pr.label":"Portfolio","pr.title":"Featured Projects","pr.sub":"A selection of my most relevant work.","p1.d":"Advanced WhatsApp chatbot with multi-platform integration. Robust conversational automation system.","p2.t":"Humanized OpenAI Chat","p2.d":"Chatbot with humanized personality using OpenAI API. Natural and contextual conversational experience.","p3.d":"Virtual assistant integrated with Google Calendar for intelligent appointment management via chat.","p4.t":"Hands Project","p4.d":"Computer vision system for finger counting and hand tracking using MediaPipe and OpenCV.","p5.d":"Robust REST API for CRUD operations on MariaDB. Scalable and secure architecture.","p6.t":"Vagrant VM Project","p6.d":"Full virtual machine provisioning automation using Vagrant and Shell Script.","edu.label":"Education","edu.title":"Education & Certifications","edu.sub":"Academic background and specialization courses.","ed1.deg":"Software Engineering","ed1.field":"Bachelor's Degree","ed2.deg":"Artificial Intelligence & Data Science","ed2.field":"Postgraduate (Specialization)","ed3.deg":"Systems Analysis","ed3.field":"Bachelor's Degree · IT","ed4.deg":"MBA in Information Systems Management","ed5.deg":"Data Processing Technician","ed5.field":"Technical · IT","cert.label":"Certifications","ct.label":"Contact","ct.title":"Let's work together?","ct.desc":"Open to new challenges and collaborations. Get in touch!","ct.cta":"Visit GitHub →","ft.made":"Made with ♥ and lots of ☕ · Rio de Janeiro"}
 };
-
-let currentLang = 'pt';
-
-function applyTranslations(lang) {
-    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const val = translations[lang][key];
-        if (val !== undefined) el.innerHTML = val;
-    });
-
-    const flag = document.getElementById('langFlag');
-    const label = document.getElementById('langLabel');
-    if (lang === 'pt') {
-        flag.textContent = '🇺🇸';
-        label.textContent = 'EN';
-    } else {
-        flag.textContent = '🇧🇷';
-        label.textContent = 'PT';
-    }
+var lang='pt';
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l==='pt'?'pt-BR':'en';
+  document.querySelectorAll('[data-i]').forEach(function(el){
+    var v=T[l][el.getAttribute('data-i')];
+    if(v!==undefined)el.innerHTML=v;
+  });
+  document.getElementById('lf').textContent=l==='pt'?'🇺🇸':'🇧🇷';
+  document.getElementById('ll').textContent=l==='pt'?'EN':'PT';
 }
-
-document.getElementById('langToggle').addEventListener('click', () => {
-    currentLang = currentLang === 'pt' ? 'en' : 'pt';
-    applyTranslations(currentLang);
-    // small bounce animation
-    const btn = document.getElementById('langToggle');
-    btn.style.transform = 'scale(0.9)';
-    setTimeout(() => btn.style.transform = '', 150);
+document.getElementById('lb').addEventListener('click',function(){setLang(lang==='pt'?'en':'pt');});
+var nb=document.getElementById('nav');
+window.addEventListener('scroll',function(){nb.classList.toggle('sc',window.scrollY>60);});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
 });
-
-// ── NAV SCROLL ────────────────────────────────────────────────────────────────
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// ── SMOOTH SCROLL ─────────────────────────────────────────────────────────────
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
-    });
-});
-
-// ── REVEAL ON SCROLL ─────────────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-            entry.target.style.transitionDelay = (i * 0.07) + 's';
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-}, { thresho
+var els=document.querySelectorAll('.anim');
+els.forEach(function(el){el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.6s ease,transform 0.6s ease';});
+var ob=new IntersectionObserver(function(entries){
+  entries.forEach(function(e,i){
+    if(e.isIntersecting){
+      setTimeout(function(){e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*80);
+      ob.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+els.forEach(function(el){ob.observe(el);});
+</script>
+</body>
+</html>
