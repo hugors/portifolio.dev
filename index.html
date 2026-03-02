@@ -177,7 +177,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 5%;
+            padding: 90px 5% 0;
             position: relative;
             z-index: 1;
         }
@@ -221,6 +221,8 @@
         .hero h1 .line1 { display: block; color: var(--text); }
         .hero h1 .line2 {
             display: block;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            letter-spacing: -1px;
             background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 60%, var(--pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -282,7 +284,7 @@
         /* scroll indicator */
         .scroll-hint {
             position: absolute;
-            bottom: 3rem;
+            bottom: 2.5rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -290,10 +292,11 @@
             align-items: center;
             gap: 0.5rem;
             color: var(--text-muted);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             animation: fadeUp 1s ease 1s both;
+            pointer-events: none;
         }
         .scroll-line {
             width: 1px;
@@ -975,7 +978,7 @@
             <a href="#" class="social-btn" title="LinkedIn">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
             </a>
-            <a href="mailto:hugo@example.com" class="social-btn" title="Email">
+            <a href="/cdn-cgi/l/email-protection#fb938e9c94bb9e839a968b979ed5989496" class="social-btn" title="Email">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
         </div>
@@ -988,7 +991,7 @@
     <span data-i18n="footer.made">Feito com ♥ e muito ☕</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── i18n ──────────────────────────────────────────────────────────────────────
 const translations = {
     pt: {
@@ -1134,9 +1137,4 @@ const observer = new IntersectionObserver(entries => {
             observer.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+}, { thresho
