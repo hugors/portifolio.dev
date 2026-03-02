@@ -142,13 +142,33 @@ section{position:relative;z-index:1;padding:6rem 5%}
 .cert:hover{border-color:var(--bdh);color:var(--c);background:rgba(99,210,255,.06);transform:translateY(-2px)}
 .cert span{font-size:.9rem}
 
-/* GITHUB STATS */
-#ghstats{background:linear-gradient(180deg,transparent,rgba(13,20,32,.5),transparent)}
-.stats-wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.stat-img{background:var(--s1);border:1px solid var(--bd);border-radius:18px;overflow:hidden;transition:all .3s;padding:1.5rem;display:flex;align-items:center;justify-content:center}
-.stat-img:hover{border-color:var(--bdh);transform:translateY(-4px)}
-.stat-img img{width:100%;max-width:400px;border-radius:8px}
-.streak-wrap{grid-column:1/-1}
+/* EDU TIMELINE */
+.edu-timeline{max-width:1100px;margin:0 auto;position:relative;padding-bottom:3rem}
+.edu-timeline::before{content:'';position:absolute;top:52px;left:0;right:160px;height:2px;background:linear-gradient(90deg,var(--c),var(--v),var(--p),var(--g),var(--o));z-index:0}
+.edu-steps{display:flex;gap:0;position:relative;z-index:1;overflow-x:auto;padding-bottom:1rem;align-items:flex-start}
+.edu-step{flex:1;min-width:160px;display:flex;flex-direction:column;align-items:center;position:relative}
+.edu-dot{width:20px;height:20px;border-radius:50%;border:3px solid var(--ed,var(--c));background:var(--bg);position:relative;z-index:2;margin-bottom:1.5rem;transition:all .4s;flex-shrink:0}
+.edu-step:hover .edu-dot{background:var(--ed,var(--c));box-shadow:0 0 16px var(--ed,var(--c));transform:scale(1.3)}
+.edu-card2{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.25rem;width:calc(100% - 1.5rem);text-align:center;transition:all .35s;position:relative;overflow:hidden}
+.edu-card2::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ed,var(--c));opacity:0;transition:opacity .35s}
+.edu-step:hover .edu-card2{border-color:rgba(99,210,255,.25);transform:translateY(-6px);background:var(--s2)}
+.edu-step:hover .edu-card2::after{opacity:1}
+.edu-step:nth-child(1){--ed:var(--c)}.edu-step:nth-child(2){--ed:var(--v)}.edu-step:nth-child(3){--ed:var(--p)}.edu-step:nth-child(4){--ed:var(--g)}.edu-step:nth-child(5){--ed:var(--o)}
+.edu-year{font-size:.68rem;font-weight:700;letter-spacing:2px;color:var(--ed,var(--c));margin-bottom:.5rem;text-transform:uppercase}
+.edu-emoji{font-size:1.75rem;margin-bottom:.6rem;display:block}
+.edu-title2{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:.3rem;line-height:1.3}
+.edu-sub2{font-size:.75rem;color:var(--td);margin-bottom:.3rem;line-height:1.4}
+.edu-school2{font-size:.72rem;color:var(--tm)}
+.edu-continues{display:flex;flex-direction:column;align-items:center;min-width:100px;padding-top:42px;gap:.5rem}
+.continues-dots{display:flex;gap:5px;align-items:center}
+.continues-dots span{width:6px;height:6px;border-radius:50%;background:var(--tm);animation:cdot 1.5s ease-in-out infinite}
+.continues-dots span:nth-child(2){animation-delay:.2s}.continues-dots span:nth-child(3){animation-delay:.4s}
+@keyframes cdot{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.continues-ring{width:28px;height:28px;border-radius:50%;border:2px dashed var(--tm);display:flex;align-items:center;justify-content:center;animation:ringPulse 2.5s ease-in-out infinite}
+@keyframes ringPulse{0%,100%{border-color:var(--tm);box-shadow:none}50%{border-color:var(--c);box-shadow:0 0 12px rgba(99,210,255,.3)}}
+.continues-ring svg{color:var(--c)}
+.continues-label{font-size:.68rem;color:var(--tm);font-style:italic;letter-spacing:.5px;text-align:center;line-height:1.4}
+@media(max-width:900px){.edu-steps{flex-wrap:wrap;gap:1.25rem}.edu-timeline::before{display:none}.edu-continues{flex-direction:row;padding-top:0;padding-left:.5rem;width:100%;gap:1rem}}
 
 /* PROJECTS */
 .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;max-width:1100px;margin:0 auto}
@@ -348,29 +368,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:1.75re
   </div>
 </section>
 
-<div class="dv"></div>
-
-<!-- GITHUB STATS -->
-<section id="ghstats">
-  <div class="sh mw anim">
-    <div class="sl" data-i="gh.label">GitHub</div>
-    <h2 class="stitle" data-i="gh.title">GitHub Stats</h2>
-    <p class="ssub" data-i="gh.sub">Atividade e linguagens mais utilizadas nos projetos.</p>
-  </div>
-  <div class="stats-wrap anim">
-    <div class="stat-img streak-wrap">
-      <img src="https://streak-stats.demolab.com/?user=hugors&theme=dark&hide_border=true&background=0d1420&ring=30A3DC&fire=E94D5F&currStreakLabel=E94D5F" alt="GitHub Streak" loading="lazy">
-    </div>
-    <div class="stat-img">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=hugors&layout=compact&theme=dark&bg_color=0d1420&border_color=30A3DC&title_color=E94D5F&text_color=FFF&hide_border=true" alt="Top Languages" loading="lazy">
-    </div>
-    <div class="stat-img">
-      <img src="https://github-readme-stats.vercel.app/api?username=hugors&show_icons=true&theme=dark&bg_color=0d1420&border_color=30A3DC&title_color=63d2ff&text_color=8899b2&icon_color=a78bfa&hide_border=true" alt="GitHub Stats" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<div class="dv"></div>
 
 <!-- PROJECTS -->
 <section id="projetos">
@@ -395,44 +392,81 @@ footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:1.75re
 <section id="edu">
   <div class="sh mw anim">
     <div class="sl" data-i="edu.label">Formação</div>
-    <h2 class="stitle" data-i="edu.title">Educação & Certificações</h2>
-    <p class="ssub" data-i="edu.sub">Formação acadêmica e cursos de especialização.</p>
+    <h2 class="stitle" data-i="edu.title">Jornada Acadêmica</h2>
+    <p class="ssub" data-i="edu.sub">Uma trajetória de aprendizado contínuo — que não termina aqui.</p>
   </div>
-  <div class="edu-grid mw anim">
-    <div class="edu-card">
-      <div class="edu-icon">&#x1F393;</div>
-      <div class="edu-degree" data-i="ed1.deg">Engenharia de Software</div>
-      <div class="edu-field" data-i="ed1.field">Graduação</div>
-      <div class="edu-school">FAMESP – Faculdade Método de São Paulo</div>
-      <div class="edu-period">Jun 2025 – Jun 2026</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">&#x1F9E0;</div>
-      <div class="edu-degree" data-i="ed2.deg">Inteligência Artificial & Ciência de Dados</div>
-      <div class="edu-field" data-i="ed2.field">Pós-graduação (Lato Sensu)</div>
-      <div class="edu-school">Centro Universitário IBMR</div>
-      <div class="edu-period">Out 2023 – Dez 2024</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">&#x1F4BB;</div>
-      <div class="edu-degree" data-i="ed3.deg">Análise de Sistemas</div>
-      <div class="edu-field" data-i="ed3.field">Graduação · TI</div>
-      <div class="edu-school">Centro Universitário Carioca</div>
-      <div class="edu-period">–</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">&#x1F4BC;</div>
-      <div class="edu-degree" data-i="ed4.deg">MBA em Gestão de Sistemas de Informação</div>
-      <div class="edu-field">MBA</div>
-      <div class="edu-school">Faculdade Filosofia de Campo Grande</div>
-      <div class="edu-period">–</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">&#x1F5A5;&#xFE0F;</div>
-      <div class="edu-degree" data-i="ed5.deg">Técnico em Processamento de Dados</div>
-      <div class="edu-field" data-i="ed5.field">Ensino Técnico · TI</div>
-      <div class="edu-school">Colégio Antonio de Pádua</div>
-      <div class="edu-period">1980 – 1986</div>
+
+  <div class="edu-timeline anim">
+    <div class="edu-steps">
+
+      <div class="edu-step">
+        <div class="edu-dot"></div>
+        <div class="edu-card2">
+          <div class="edu-year">1980 – 1986</div>
+          <span class="edu-emoji">&#x1F5A5;&#xFE0F;</span>
+          <div class="edu-title2" data-i="ed5.deg">Técnico em Processamento de Dados</div>
+          <div class="edu-sub2" data-i="ed5.field">Ensino Técnico · TI</div>
+          <div class="edu-school2">Col. Antonio de Pádua</div>
+        </div>
+      </div>
+
+      <div class="edu-step">
+        <div class="edu-dot"></div>
+        <div class="edu-card2">
+          <div class="edu-year" data-i="ed.period.analyst">Anos 2000s</div>
+          <span class="edu-emoji">&#x1F4BB;</span>
+          <div class="edu-title2" data-i="ed3.deg">Análise de Sistemas</div>
+          <div class="edu-sub2" data-i="ed3.field">Graduação · TI</div>
+          <div class="edu-school2">Uni. Carioca</div>
+        </div>
+      </div>
+
+      <div class="edu-step">
+        <div class="edu-dot"></div>
+        <div class="edu-card2">
+          <div class="edu-year" data-i="ed.period.mba">Anos 2010s</div>
+          <span class="edu-emoji">&#x1F4BC;</span>
+          <div class="edu-title2" data-i="ed4.deg">MBA Gestão de Sistemas</div>
+          <div class="edu-sub2">MBA</div>
+          <div class="edu-school2">Fac. Filosofia CG</div>
+        </div>
+      </div>
+
+      <div class="edu-step">
+        <div class="edu-dot"></div>
+        <div class="edu-card2">
+          <div class="edu-year">2023 – 2024</div>
+          <span class="edu-emoji">&#x1F9E0;</span>
+          <div class="edu-title2" data-i="ed2.deg">IA & Ciência de Dados</div>
+          <div class="edu-sub2" data-i="ed2.field">Pós-graduação</div>
+          <div class="edu-school2">IBMR</div>
+        </div>
+      </div>
+
+      <div class="edu-step">
+        <div class="edu-dot"></div>
+        <div class="edu-card2">
+          <div class="edu-year">2025 – 2026</div>
+          <span class="edu-emoji">&#x1F393;</span>
+          <div class="edu-title2" data-i="ed1.deg">Engenharia de Software</div>
+          <div class="edu-sub2" data-i="ed1.field">Graduação</div>
+          <div class="edu-school2">FAMESP</div>
+        </div>
+      </div>
+
+      <!-- CONTINUES -->
+      <div class="edu-continues">
+        <div class="continues-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="continues-ring">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+        </div>
+        <div class="continues-label" data-i="edu.continues">Em<br>construção...</div>
+      </div>
+
     </div>
   </div>
 
@@ -478,8 +512,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:1.75re
 
 <script>
 var T={
-pt:{"nav.about":"Sobre","nav.exp":"Experiência","nav.skills":"Skills","nav.projects":"Projetos","nav.edu":"Formação","nav.contact":"Contato","hero.badge":"Especialista em Sistemas · 17+ anos de experiência","hero.title":"Especialista em Sistemas & Dados | Automação, BI & DevOps","hero.desc":"Com mais de 17 anos na Claro Brasil, desenvolvo e automatizo soluções que suportam processos críticos. Especialista em BI, integração de sistemas, DevOps e desenvolvimento Full Stack.","hero.cta1":"Ver Experiência →","hero.cta2":"Projetos ↗","hs.years":"Anos de Exp.","hs.projects":"Projetos","hs.companies":"Empresas","hs.certs":"Certificações","about.label":"Sobre mim","about.heading":"Criando soluções que geram <em>impacto real</em>","about.p1":"Com mais de 17 anos na Claro Brasil, atuo no desenvolvimento, automação e sustentação de soluções críticas de portabilidade. Minha atuação envolve modelagem e análise de dados, criação de soluções analíticas e relatórios de BI com SQL Server e Python.","about.p2":"Trabalho de forma integrada com equipes técnicas e de negócio na implementação de soluções escaláveis. Acredito que um bom desenvolvedor não apenas escreve código — ele cria soluções que geram impacto real.","exp.label":"Trajetória","exp.title":"Experiência Profissional","exp.sub":"Mais de 17 anos construindo soluções corporativas de impacto.","present":"Presente","e1.role":"Especialista em Sistemas e Dados","e1.b1":"Desenvolvimento e acompanhamento de projetos de portabilidade e seus processos críticos","e1.b2":"Relatórios gerenciais e soluções de BI com Microsoft SQL Server e Python","e1.b3":"Automação de processos e sustentação de sistemas corporativos de alta criticidade","e1.b4":"Integração com equipes técnicas e de negócio para implementação de soluções escaláveis","e2.role":"Analista de Desenvolvimento","e2.b1":"Desenvolvimento de sistemas web institucionais","e2.b2":"Atuação como desenvolvedor web com foco em soluções acadêmicas","e3.role":"Analista de Sistemas Sênior","e3.b1":"Foco em soluções corporativas de alta criticidade","e3.b2":"Controle e gestão de demandas e projetos estratégicos","e3.b3":"Atendimento a solicitações críticas com alta complexidade técnica","e4.role":"Fundador & Consultor de TI","e4.b1":"Consultoria em soluções de TI para empresas","e4.b2":"Soluções de marketing digital e ferramentas tecnológicas","e4.b3":"Desenvolvimento e implantação de sistemas sob medida","e5.role":"Analista de Produção","e5.b1":"Controle de URAs e escalas operacionais","e5.b2":"Relatórios gerenciais e controle de produção em Call Center","sk.label":"Tecnologias","sk.title":"Stack & Skills","sk.sub":"Ferramentas que uso para criar soluções que escalam.","sk.c1":"Frontend & Backend","sk.c5":"BI & Dados","sk.c2":"IA & Automação","sk.c3":"DevOps & Infra","sk.c6":"Ferramentas","sk.c7":"Metodologias","gh.label":"GitHub","gh.title":"GitHub Stats","gh.sub":"Atividade e linguagens mais utilizadas nos projetos.","pr.label":"Portfólio","pr.title":"Projetos em Destaque","pr.sub":"Uma seleção dos trabalhos mais relevantes.","p1.d":"Chatbot avançado via WhatsApp com integração multi-plataforma. Sistema robusto de automação conversacional.","p2.t":"Chat OpenAI Humanizado","p2.d":"Chatbot com personalidade humanizada via OpenAI API. Experiência conversacional natural e contextual.","p3.d":"Assistente virtual integrado com Google Calendar para gerenciamento inteligente de agendamentos via chat.","p4.t":"Projeto Hands","p4.d":"Sistema de visão computacional para contagem de dedos e tracking de mãos usando MediaPipe e OpenCV.","p5.d":"API REST robusta para operações CRUD em MariaDB. Arquitetura escalável e segura.","p6.t":"Projeto VM Vagrant","p6.d":"Automação completa de provisionamento de máquinas virtuais usando Vagrant e Shell Script.","edu.label":"Formação","edu.title":"Educação & Certificações","edu.sub":"Formação acadêmica e cursos de especialização.","ed1.deg":"Engenharia de Software","ed1.field":"Graduação","ed2.deg":"Inteligência Artificial & Ciência de Dados","ed2.field":"Pós-graduação (Lato Sensu)","ed3.deg":"Análise de Sistemas","ed3.field":"Graduação · TI","ed4.deg":"MBA em Gestão de Sistemas de Informação","ed5.deg":"Técnico em Processamento de Dados","ed5.field":"Ensino Técnico · TI","cert.label":"Certificações","ct.label":"Contato","ct.title":"Vamos trabalhar juntos?","ct.desc":"Aberto a novos desafios e colaborações. Entre em contato!","ct.cta":"Acessar GitHub →","ft.made":"Feito com ♥ e muito ☕ · Rio de Janeiro"},
-en:{"nav.about":"About","nav.exp":"Experience","nav.skills":"Skills","nav.projects":"Projects","nav.edu":"Education","nav.contact":"Contact","hero.badge":"Systems Specialist · 17+ years of experience","hero.title":"Systems & Data Specialist | Automation, BI & DevOps","hero.desc":"With 17+ years at Claro Brasil, I develop and automate solutions that support critical processes. Specialist in BI, system integration, DevOps and Full Stack development.","hero.cta1":"View Experience →","hero.cta2":"Projects ↗","hs.years":"Years Exp.","hs.projects":"Projects","hs.companies":"Companies","hs.certs":"Certifications","about.label":"About me","about.heading":"Building solutions that create <em>real impact</em>","about.p1":"With 17+ years at Claro Brasil, I work on development, automation and maintenance of critical portability solutions. My work involves data modeling and analysis, creation of analytical solutions and BI reports using SQL Server and Python.","about.p2":"I work integrated with technical and business teams implementing scalable solutions. I believe a good developer doesn't just write code — they create solutions that generate real impact.","exp.label":"Timeline","exp.title":"Professional Experience","exp.sub":"17+ years building impactful corporate solutions.","present":"Present","e1.role":"Systems & Data Specialist","e1.b1":"Development and management of portability projects and their critical processes","e1.b2":"Management reports and BI solutions using Microsoft SQL Server and Python","e1.b3":"Process automation and maintenance of high-criticality corporate systems","e1.b4":"Integrated work with technical and business teams to implement scalable solutions","e2.role":"Development Analyst","e2.b1":"Development of institutional web systems","e2.b2":"Web developer focused on academic solutions","e3.role":"Senior Systems Analyst","e3.b1":"Focus on high-criticality corporate solutions","e3.b2":"Control and management of strategic project demands","e3.b3":"Handling critical requests with high technical complexity","e4.role":"Founder & IT Consultant","e4.b1":"IT consulting solutions for companies","e4.b2":"Digital marketing solutions and technological tools","e4.b3":"Custom system development and deployment","e5.role":"Production Analyst","e5.b1":"URA and operational schedule control","e5.b2":"Management reports and Call Center production control","sk.label":"Technologies","sk.title":"Stack & Skills","sk.sub":"Tools I use to build solutions that scale.","sk.c1":"Frontend & Backend","sk.c5":"BI & Data","sk.c2":"AI & Automation","sk.c3":"DevOps & Infra","sk.c6":"Tools","sk.c7":"Methodologies","gh.label":"GitHub","gh.title":"GitHub Stats","gh.sub":"Activity and most used languages in projects.","pr.label":"Portfolio","pr.title":"Featured Projects","pr.sub":"A selection of my most relevant work.","p1.d":"Advanced WhatsApp chatbot with multi-platform integration. Robust conversational automation system.","p2.t":"Humanized OpenAI Chat","p2.d":"Chatbot with humanized personality using OpenAI API. Natural and contextual conversational experience.","p3.d":"Virtual assistant integrated with Google Calendar for intelligent appointment management via chat.","p4.t":"Hands Project","p4.d":"Computer vision system for finger counting and hand tracking using MediaPipe and OpenCV.","p5.d":"Robust REST API for CRUD operations on MariaDB. Scalable and secure architecture.","p6.t":"Vagrant VM Project","p6.d":"Full virtual machine provisioning automation using Vagrant and Shell Script.","edu.label":"Education","edu.title":"Education & Certifications","edu.sub":"Academic background and specialization courses.","ed1.deg":"Software Engineering","ed1.field":"Bachelor's Degree","ed2.deg":"Artificial Intelligence & Data Science","ed2.field":"Postgraduate (Specialization)","ed3.deg":"Systems Analysis","ed3.field":"Bachelor's Degree · IT","ed4.deg":"MBA in Information Systems Management","ed5.deg":"Data Processing Technician","ed5.field":"Technical · IT","cert.label":"Certifications","ct.label":"Contact","ct.title":"Let's work together?","ct.desc":"Open to new challenges and collaborations. Get in touch!","ct.cta":"Visit GitHub →","ft.made":"Made with ♥ and lots of ☕ · Rio de Janeiro"}
+pt:{"nav.about":"Sobre","nav.exp":"Experiência","nav.skills":"Skills","nav.projects":"Projetos","nav.edu":"Formação","nav.contact":"Contato","hero.badge":"Especialista em Sistemas · 17+ anos de experiência","hero.title":"Especialista em Sistemas & Dados | Automação, BI & DevOps","hero.desc":"Com mais de 17 anos na Claro Brasil, desenvolvo e automatizo soluções que suportam processos críticos. Especialista em BI, integração de sistemas, DevOps e desenvolvimento Full Stack.","hero.cta1":"Ver Experiência →","hero.cta2":"Projetos ↗","hs.years":"Anos de Exp.","hs.projects":"Projetos","hs.companies":"Empresas","hs.certs":"Certificações","about.label":"Sobre mim","about.heading":"Criando soluções que geram <em>impacto real</em>","about.p1":"Com mais de 17 anos na Claro Brasil, atuo no desenvolvimento, automação e sustentação de soluções críticas de portabilidade. Minha atuação envolve modelagem e análise de dados, criação de soluções analíticas e relatórios de BI com SQL Server e Python.","about.p2":"Trabalho de forma integrada com equipes técnicas e de negócio na implementação de soluções escaláveis. Acredito que um bom desenvolvedor não apenas escreve código — ele cria soluções que geram impacto real.","exp.label":"Trajetória","exp.title":"Experiência Profissional","exp.sub":"Mais de 17 anos construindo soluções corporativas de impacto.","present":"Presente","e1.role":"Especialista em Sistemas e Dados","e1.b1":"Desenvolvimento e acompanhamento de projetos de portabilidade e seus processos críticos","e1.b2":"Relatórios gerenciais e soluções de BI com Microsoft SQL Server e Python","e1.b3":"Automação de processos e sustentação de sistemas corporativos de alta criticidade","e1.b4":"Integração com equipes técnicas e de negócio para implementação de soluções escaláveis","e2.role":"Analista de Desenvolvimento","e2.b1":"Desenvolvimento de sistemas web institucionais","e2.b2":"Atuação como desenvolvedor web com foco em soluções acadêmicas","e3.role":"Analista de Sistemas Sênior","e3.b1":"Foco em soluções corporativas de alta criticidade","e3.b2":"Controle e gestão de demandas e projetos estratégicos","e3.b3":"Atendimento a solicitações críticas com alta complexidade técnica","e4.role":"Fundador & Consultor de TI","e4.b1":"Consultoria em soluções de TI para empresas","e4.b2":"Soluções de marketing digital e ferramentas tecnológicas","e4.b3":"Desenvolvimento e implantação de sistemas sob medida","e5.role":"Analista de Produção","e5.b1":"Controle de URAs e escalas operacionais","e5.b2":"Relatórios gerenciais e controle de produção em Call Center","sk.label":"Tecnologias","sk.title":"Stack & Skills","sk.sub":"Ferramentas que uso para criar soluções que escalam.","sk.c1":"Frontend & Backend","sk.c5":"BI & Dados","sk.c2":"IA & Automação","sk.c3":"DevOps & Infra","sk.c6":"Ferramentas","sk.c7":"Metodologias","gh.label":"GitHub","gh.title":"GitHub Stats","gh.sub":"Atividade e linguagens mais utilizadas nos projetos.","pr.label":"Portfólio","pr.title":"Projetos em Destaque","pr.sub":"Uma seleção dos trabalhos mais relevantes.","p1.d":"Chatbot avançado via WhatsApp com integração multi-plataforma. Sistema robusto de automação conversacional.","p2.t":"Chat OpenAI Humanizado","p2.d":"Chatbot com personalidade humanizada via OpenAI API. Experiência conversacional natural e contextual.","p3.d":"Assistente virtual integrado com Google Calendar para gerenciamento inteligente de agendamentos via chat.","p4.t":"Projeto Hands","p4.d":"Sistema de visão computacional para contagem de dedos e tracking de mãos usando MediaPipe e OpenCV.","p5.d":"API REST robusta para operações CRUD em MariaDB. Arquitetura escalável e segura.","p6.t":"Projeto VM Vagrant","p6.d":"Automação completa de provisionamento de máquinas virtuais usando Vagrant e Shell Script.","edu.label":"Formação","edu.title":"Jornada Acadêmica","edu.sub":"Uma trajetória de aprendizado contínuo — que não termina aqui.","ed.period.analyst":"Anos 2000s","ed.period.mba":"Anos 2010s","edu.continues":"Em\nconstrução...","ed1.deg":"Engenharia de Software","ed1.field":"Graduação","ed2.deg":"Inteligência Artificial & Ciência de Dados","ed2.field":"Pós-graduação (Lato Sensu)","ed3.deg":"Análise de Sistemas","ed3.field":"Graduação · TI","ed4.deg":"MBA em Gestão de Sistemas de Informação","ed5.deg":"Técnico em Processamento de Dados","ed5.field":"Ensino Técnico · TI","cert.label":"Certificações","ct.label":"Contato","ct.title":"Vamos trabalhar juntos?","ct.desc":"Aberto a novos desafios e colaborações. Entre em contato!","ct.cta":"Acessar GitHub →","ft.made":"Feito com ♥ e muito ☕ · Rio de Janeiro"},
+en:{"nav.about":"About","nav.exp":"Experience","nav.skills":"Skills","nav.projects":"Projects","nav.edu":"Education","nav.contact":"Contact","hero.badge":"Systems Specialist · 17+ years of experience","hero.title":"Systems & Data Specialist | Automation, BI & DevOps","hero.desc":"With 17+ years at Claro Brasil, I develop and automate solutions that support critical processes. Specialist in BI, system integration, DevOps and Full Stack development.","hero.cta1":"View Experience →","hero.cta2":"Projects ↗","hs.years":"Years Exp.","hs.projects":"Projects","hs.companies":"Companies","hs.certs":"Certifications","about.label":"About me","about.heading":"Building solutions that create <em>real impact</em>","about.p1":"With 17+ years at Claro Brasil, I work on development, automation and maintenance of critical portability solutions. My work involves data modeling and analysis, creation of analytical solutions and BI reports using SQL Server and Python.","about.p2":"I work integrated with technical and business teams implementing scalable solutions. I believe a good developer doesn't just write code — they create solutions that generate real impact.","exp.label":"Timeline","exp.title":"Professional Experience","exp.sub":"17+ years building impactful corporate solutions.","present":"Present","e1.role":"Systems & Data Specialist","e1.b1":"Development and management of portability projects and their critical processes","e1.b2":"Management reports and BI solutions using Microsoft SQL Server and Python","e1.b3":"Process automation and maintenance of high-criticality corporate systems","e1.b4":"Integrated work with technical and business teams to implement scalable solutions","e2.role":"Development Analyst","e2.b1":"Development of institutional web systems","e2.b2":"Web developer focused on academic solutions","e3.role":"Senior Systems Analyst","e3.b1":"Focus on high-criticality corporate solutions","e3.b2":"Control and management of strategic project demands","e3.b3":"Handling critical requests with high technical complexity","e4.role":"Founder & IT Consultant","e4.b1":"IT consulting solutions for companies","e4.b2":"Digital marketing solutions and technological tools","e4.b3":"Custom system development and deployment","e5.role":"Production Analyst","e5.b1":"URA and operational schedule control","e5.b2":"Management reports and Call Center production control","sk.label":"Technologies","sk.title":"Stack & Skills","sk.sub":"Tools I use to build solutions that scale.","sk.c1":"Frontend & Backend","sk.c5":"BI & Data","sk.c2":"AI & Automation","sk.c3":"DevOps & Infra","sk.c6":"Tools","sk.c7":"Methodologies","gh.label":"GitHub","gh.title":"GitHub Stats","gh.sub":"Activity and most used languages in projects.","pr.label":"Portfolio","pr.title":"Featured Projects","pr.sub":"A selection of my most relevant work.","p1.d":"Advanced WhatsApp chatbot with multi-platform integration. Robust conversational automation system.","p2.t":"Humanized OpenAI Chat","p2.d":"Chatbot with humanized personality using OpenAI API. Natural and contextual conversational experience.","p3.d":"Virtual assistant integrated with Google Calendar for intelligent appointment management via chat.","p4.t":"Hands Project","p4.d":"Computer vision system for finger counting and hand tracking using MediaPipe and OpenCV.","p5.d":"Robust REST API for CRUD operations on MariaDB. Scalable and secure architecture.","p6.t":"Vagrant VM Project","p6.d":"Full virtual machine provisioning automation using Vagrant and Shell Script.","edu.label":"Education","edu.title":"Academic Journey","edu.sub":"A path of continuous learning — that doesn't end here.","ed.period.analyst":"2000s","ed.period.mba":"2010s","edu.continues":"Still\nlearning...","ed1.deg":"Software Engineering","ed1.field":"Bachelor's Degree","ed2.deg":"Artificial Intelligence & Data Science","ed2.field":"Postgraduate (Specialization)","ed3.deg":"Systems Analysis","ed3.field":"Bachelor's Degree · IT","ed4.deg":"MBA in Information Systems Management","ed5.deg":"Data Processing Technician","ed5.field":"Technical · IT","cert.label":"Certifications","ct.label":"Contact","ct.title":"Let's work together?","ct.desc":"Open to new challenges and collaborations. Get in touch!","ct.cta":"Visit GitHub →","ft.made":"Made with ♥ and lots of ☕ · Rio de Janeiro"}
 };
 var lang='pt';
 function setLang(l){
